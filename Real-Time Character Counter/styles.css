@@ -1,0 +1,38 @@
+body {
+    background-color: #b3b3e6; /* Light purple background */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    background-color: #e6e67a; /* Yellow highlight for title */
+    padding: 5px 15px;
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 300px;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    resize: none;
+    outline: none;
+}
+
+#char-count {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Class to turn text red when limit is reached */
+#char-count.limit-reached {
+    color: red;
+}
