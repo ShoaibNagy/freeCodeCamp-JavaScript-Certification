@@ -1,0 +1,229 @@
+/* ── Reset ─────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── Tokens ────────────────────────────────────────── */
+:root {
+  --sky:      #0f1b2d;
+  --horizon:  #162032;
+  --cloud:    #1e3050;
+  --mist:     #2a4a70;
+  --accent:   #5bb8f5;
+  --gold:     #f0c060;
+  --text:     #e8f0fe;
+  --muted:    #7a9bbf;
+  --radius:   16px;
+}
+
+/* ── Base ──────────────────────────────────────────── */
+body {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 50% 0%, #1a3a60 0%, var(--sky) 65%);
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 60px;
+}
+
+/* ── Header ────────────────────────────────────────── */
+header {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.wordmark {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  line-height: 1;
+  /* The signature: each letter rendered with a faint glow like light through cloud */
+  text-shadow: 0 0 40px rgba(91, 184, 245, 0.5), 0 0 80px rgba(91, 184, 245, 0.2);
+}
+
+.tagline {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* ── Controls ──────────────────────────────────────── */
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+.select-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: '▾';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+  font-size: 0.9rem;
+}
+
+select {
+  width: 100%;
+  height: 100%;
+  background: var(--cloud);
+  color: var(--text);
+  border: 1px solid var(--mist);
+  border-radius: var(--radius);
+  padding: 14px 40px 14px 18px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+select:focus {
+  border-color: var(--accent);
+}
+
+select option { background: var(--cloud); }
+
+#get-weather-btn {
+  background: var(--accent);
+  color: var(--sky);
+  border: none;
+  border-radius: var(--radius);
+  padding: 14px 24px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+#get-weather-btn:hover  { opacity: 0.88; }
+#get-weather-btn:active { transform: scale(0.97); }
+
+/* ── Weather card ──────────────────────────────────── */
+.weather-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--horizon);
+  border: 1px solid var(--mist);
+  border-radius: calc(var(--radius) * 1.5);
+  overflow: hidden;
+  animation: rise 0.4s ease;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.weather-card[hidden] { display: none; }
+
+/* Card top section */
+.card-header {
+  background: linear-gradient(135deg, var(--cloud), var(--mist));
+  padding: 28px 28px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.city-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#weather-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+}
+
+.city-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#location {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+#weather-main {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.temp-display {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3.2rem;
+  color: var(--gold);
+  line-height: 1;
+  text-shadow: 0 2px 16px rgba(240, 192, 96, 0.3);
+}
+
+/* Card detail grid */
+.card-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.detail-item {
+  padding: 18px 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-item:nth-child(odd) {
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.detail-label {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.detail-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width: 420px) {
+  .controls { flex-direction: column; }
+  #get-weather-btn { width: 100%; }
+  .card-header { flex-direction: column; }
+  .temp-display { font-size: 2.6rem; }
+}

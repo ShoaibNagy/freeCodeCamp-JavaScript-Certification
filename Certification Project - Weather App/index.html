@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+  <header>
+    <div class="wordmark">SKIES</div>
+    <p class="tagline">Real-time weather by city</p>
+  </header>
+
+  <main>
+    <section class="controls">
+      <div class="select-wrapper">
+        <select title="Cities" id="city-select">
+          <option value="">— Select a city —</option>
+          <option value="new york">New York</option>
+          <option value="los angeles">Los Angeles</option>
+          <option value="chicago">Chicago</option>
+          <option value="paris">Paris</option>
+          <option value="tokyo">Tokyo</option>
+          <option value="london">London</option>
+        </select>
+      </div>
+      <button id="get-weather-btn" type="button">Get Weather</button>
+    </section>
+
+    <section class="weather-card" id="weather-card" hidden>
+      <div class="card-header">
+        <div class="city-icon-row">
+          <img id="weather-icon" src="" alt="weather icon" />
+          <div class="city-meta">
+            <span id="location" class="city-name"></span>
+            <span id="weather-main" class="weather-label"></span>
+          </div>
+        </div>
+        <div id="main-temperature" class="temp-display"></div>
+      </div>
+
+      <div class="card-details">
+        <div class="detail-item">
+          <span class="detail-label">Feels like</span>
+          <span id="feels-like" class="detail-value"></span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Humidity</span>
+          <span id="humidity" class="detail-value"></span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Wind</span>
+          <span id="wind" class="detail-value"></span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Gust</span>
+          <span id="wind-gust" class="detail-value"></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
